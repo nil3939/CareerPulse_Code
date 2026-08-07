@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules
+
+# Next.js Build Output
+/.next/
+/out/
+
+# Secret Keys & Environment Variables (DO NOT PUSH TO GITHUB)
+.env
+.env.local
+.env*.local
+
+# System Files
+.DS_Store
+Thumbs.db
+scratch/
