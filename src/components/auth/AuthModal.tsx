@@ -302,12 +302,13 @@ Attached Document: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
                   <input
                     type="email"
                     required
+                    autoComplete="off"
                     value={loginEmail}
                     onChange={e => setLoginEmail(e.target.value)}
                     placeholder={
-                      loginRoleTab === 'candidate' ? 'candidate@example.com' :
-                      loginRoleTab === 'recruiter' ? 'recruiter@company.com' :
-                      'admin@careerpulse.com.bd'
+                      loginRoleTab === 'candidate' ? 'Enter candidate email' :
+                      loginRoleTab === 'recruiter' ? 'Enter recruiter work email' :
+                      'Enter admin email'
                     }
                     className={inputClass}
                   />
@@ -319,9 +320,10 @@ Attached Document: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
                     <input
                       type={showPassword ? 'text' : 'password'}
                       required
+                      autoComplete="off"
                       value={loginPassword}
                       onChange={e => setLoginPassword(e.target.value)}
-                      placeholder="••••••••"
+                      placeholder="Enter password"
                       className={inputClass + ' pr-12'}
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-3.5 text-slate-400 hover:text-slate-600">
