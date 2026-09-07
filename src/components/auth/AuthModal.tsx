@@ -29,6 +29,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [loginPassword, setLoginPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginRoleTab, setLoginRoleTab] = useState<LoginRoleTab>('candidate');
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPassFocused, setIsPassFocused] = useState(false);
 
   // Candidate registration fields
   const [cFullName, setCFullName] = useState('');
@@ -67,6 +69,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     setSuccess('');
     setLoginEmail('');
     setLoginPassword('');
+    setIsEmailFocused(false);
+    setIsPassFocused(false);
   };
 
   const handleResumeFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -304,10 +308,12 @@ Attached Document: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
                 <div>
                   <label className={labelClass}><Mail className="w-3.5 h-3.5 text-slate-400" /> Email Address</label>
                   <input
-                    type="email"
-                    name="login_email_clean"
+                    type="text"
+                    name="cp_email_field_clean"
                     required
                     autoComplete="off"
+                    readOnly={!isEmailFocused}
+                    onFocus={() => setIsEmailFocused(true)}
                     value={loginEmail}
                     onChange={e => setLoginEmail(e.target.value)}
                     placeholder={
@@ -324,9 +330,11 @@ Attached Document: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
                   <div className="relative">
                     <input
                       type={showPassword ? 'text' : 'password'}
-                      name="login_password_clean"
+                      name="cp_pass_field_clean"
                       required
                       autoComplete="new-password"
+                      readOnly={!isPassFocused}
+                      onFocus={() => setIsPassFocused(true)}
                       value={loginPassword}
                       onChange={e => setLoginPassword(e.target.value)}
                       placeholder="Enter password"
