@@ -296,11 +296,16 @@ Attached Document: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
                 </button>
               </div>
 
-              <form onSubmit={handleLogin} className="space-y-4">
+              <form onSubmit={handleLogin} autoComplete="off" className="space-y-4">
+                {/* Dummy hidden inputs to defeat Chrome/Edge password autofill */}
+                <input type="text" name="prevent_autofill_email" className="hidden" tabIndex={-1} />
+                <input type="password" name="prevent_autofill_pass" className="hidden" tabIndex={-1} />
+
                 <div>
                   <label className={labelClass}><Mail className="w-3.5 h-3.5 text-slate-400" /> Email Address</label>
                   <input
                     type="email"
+                    name="login_email_clean"
                     required
                     autoComplete="off"
                     value={loginEmail}
@@ -319,8 +324,9 @@ Attached Document: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
                   <div className="relative">
                     <input
                       type={showPassword ? 'text' : 'password'}
+                      name="login_password_clean"
                       required
-                      autoComplete="off"
+                      autoComplete="new-password"
                       value={loginPassword}
                       onChange={e => setLoginPassword(e.target.value)}
                       placeholder="Enter password"
